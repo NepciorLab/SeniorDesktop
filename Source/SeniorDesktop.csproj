@@ -11,7 +11,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <Product>SeniorDesktop</Product>
     <Description>A large-tile desktop overlay for visually impaired and elderly Windows users.</Description>
-    <Version>1.1.0</Version>
+    <Version>1.0.1</Version>
     <ApplicationIcon>Assets\SeniorDesktop.ico</ApplicationIcon>
     <Authors>NepciorLab</Authors>
     <Copyright>Copyright (c) 2026 NepciorLab</Copyright>

@@ -1,5 +1,5 @@
 ﻿<#
-  Generates the SeniorDesktop application icon (a white cane with red bands on a blue rounded square):
+  Generates the SeniorDesktop application icon (a grey walking cane with a dark handle on a blue rounded square):
     Source\Assets\SeniorDesktop.ico   (multi-size: DIB frames up to 64 px, PNG frames for 128/256 px)
     docs\images\icon.png              (256 px preview used in the README)
 
@@ -39,28 +39,47 @@ function New-IconBitmap([int]$size) {
         ([Drawing.ColorTranslator]::FromHtml('#2F80F5')), ([Drawing.ColorTranslator]::FromHtml('#0F2A47'))
     $g.FillPath($grad, $bg)
 
-    # --- white cane geometry (normalised 0..1 coordinates): straight shaft, red lower part, black grip
-    $A = New-Object Drawing.PointF ($S * 0.15), ($S * 0.91)     # tip (bottom)
-    $B = New-Object Drawing.PointF ($S * 0.80), ($S * 0.12)     # top of the grip
-    $w = $S * 0.088                                             # cane thickness
+    # --- walking cane (grey shaft, light collar, dark rubber tip, dark "derby" handle), normalised 0..1
+    $A = New-Object Drawing.PointF ($S * 0.17), ($S * 0.90)     # tip (bottom)
+    $B = New-Object Drawing.PointF ($S * 0.68), ($S * 0.30)     # top of the shaft
+    $w = $S * 0.090                                             # shaft thickness
+    $dx = $B.X - $A.X; $dy = $B.Y - $A.Y; $len = [math]::Sqrt($dx * $dx + $dy * $dy)
+    $nx = -$dy / $len; $ny = $dx / $len                         # unit normal (for highlights)
 
     function Point-On([double]$t) {
-        New-Object Drawing.PointF ([single]($A.X + ($B.X - $A.X) * $t)), ([single]($A.Y + ($B.Y - $A.Y) * $t))
+        New-Object Drawing.PointF ([single]($A.X + $dx * $t)), ([single]($A.Y + $dy * $t))
+    }
+    function Shift([Drawing.PointF]$p, [double]$d) {
+        New-Object Drawing.PointF ([single]($p.X + $nx * $d)), ([single]($p.Y + $ny * $d))
     }
 
-    # dark outline first (separates the white cane from the background), then the white body
-    $outline = New-Pen '#0A1D33' ($w + $S * 0.05)
-    $g.DrawLine($outline, $A, $B)
-    $white = New-Pen '#FFFFFF' $w
-    $g.DrawLine($white, $A, $B)
+    # handle path: from the shaft top up and over to the left (derby grip)
+    $h0 = $B
+    $h1 = New-Object Drawing.PointF ($S * 0.71), ($S * 0.15)
+    $h2 = New-Object Drawing.PointF ($S * 0.55), ($S * 0.06)
+    $h3 = New-Object Drawing.PointF ($S * 0.37), ($S * 0.17)
+    $hw = $w * 1.85                                             # handle thickness
 
-    # red lower part, dark rubber tip, black grip
-    $red = New-Pen '#E53935' $w 'Flat'
-    $g.DrawLine($red, (Point-On 0.07), (Point-On 0.42))
-    $tip = New-Pen '#263238' $w 'Flat'
-    $g.DrawLine($tip, (Point-On 0.0), (Point-On 0.07))
-    $grip = New-Pen '#111418' ($w * 1.18) 'Round'
-    $g.DrawLine($grip, (Point-On 0.80), (Point-On 1.0))
+    # 1) light outline behind everything keeps the cane readable on the blue background
+    $halo = New-Pen '#0A1D33' ($hw + $S * 0.05)
+    $g.DrawBezier($halo, $h0, $h1, $h2, $h3)
+    $haloShaft = New-Pen '#0A1D33' ($w + $S * 0.05)
+    $g.DrawLine($haloShaft, $A, $B)
+
+    # 2) shaft: grey body, lighter highlight, darker shade
+    $g.DrawLine((New-Pen '#9C9C9C' $w), $A, $B)
+    $g.DrawLine((New-Pen '#D2D2D2' ($w * 0.28)), (Shift $A (-$w * 0.22)), (Shift $B (-$w * 0.22)))
+    $g.DrawLine((New-Pen '#6F6F6F' ($w * 0.22)), (Shift (Point-On 0.04) ($w * 0.32)), (Shift $B ($w * 0.32)))
+
+    # 3) light metal collar below the handle and dark rubber tip
+    $g.DrawLine((New-Pen '#E6E6E6' ($w * 1.04) 'Flat'), (Point-On 0.86), (Point-On 0.90))
+    $g.DrawLine((New-Pen '#2B2B2B' ($w * 1.04) 'Flat'), (Point-On 0.0), (Point-On 0.07))
+
+    # 4) handle: dark body with a soft highlight along the top
+    $g.DrawBezier((New-Pen '#3A2F2B' $hw), $h0, $h1, $h2, $h3)
+    $g.DrawBezier((New-Pen '#7A6A62' ($hw * 0.22)), (New-Object Drawing.PointF ($B.X + $w * 0.1), ($B.Y - $w * 0.1)),
+        (New-Object Drawing.PointF ($S * 0.705), ($S * 0.125)), (New-Object Drawing.PointF ($S * 0.55), ($S * 0.035)),
+        (New-Object Drawing.PointF ($S * 0.38), ($S * 0.135)))
     $g.Dispose()
 
     # downsample to the final size
