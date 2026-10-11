@@ -1,0 +1,59 @@
+<Window x:Class="SeniorDesktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:loc="clr-namespace:SeniorDesktop.Localization"
+        Title="SeniorDesktop"
+        WindowStyle="None" ResizeMode="NoResize" ShowInTaskbar="False"
+        FontFamily="Segoe UI" Background="#0F2A47"
+        KeyboardNavigation.DirectionalNavigation="Contained">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="40,20,32,0">
+            <Button x:Name="ClockButton" HorizontalAlignment="Left" Background="Transparent" BorderThickness="0"
+                    Cursor="Hand" Focusable="False" Click="Clock_Click" Padding="0">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <ContentPresenter/>
+                    </ControlTemplate>
+                </Button.Template>
+                <StackPanel>
+                    <TextBlock x:Name="TimeText" FontSize="72" FontWeight="Bold" Text="00:00"/>
+                    <TextBlock x:Name="WeekdayText" FontSize="30"/>
+                    <TextBlock x:Name="DateText" FontSize="30"/>
+                </StackPanel>
+            </Button>
+
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:Name="GearButton" Style="{StaticResource GearButton}" Margin="0,0,14,0"
+                            Focusable="False" Opacity="0.7"
+                            ToolTip="{loc:Loc Main.Tooltip.Settings}"
+                            PreviewMouseLeftButtonDown="Gear_Down" PreviewMouseLeftButtonUp="Gear_Up" MouseLeave="Gear_Up">
+                        <TextBlock x:Name="GearGlyph" Text="⚙" FontFamily="Segoe UI Symbol" FontSize="30" Foreground="White"/>
+                    </Button>
+                    <Button x:Name="ExitButton" Style="{StaticResource GearButton}"
+                            Focusable="False" Opacity="0.7"
+                            ToolTip="{loc:Loc Main.Tooltip.Exit}"
+                            PreviewMouseLeftButtonDown="Exit_Down" PreviewMouseLeftButtonUp="Exit_Up" MouseLeave="Exit_Up">
+                        <TextBlock x:Name="ExitGlyph" Text="⏻" FontFamily="Segoe UI Symbol" FontSize="30" Foreground="White"/>
+                    </Button>
+                </StackPanel>
+
+                <!-- Information shown for 3 seconds after a click shorter than one second -->
+                <TextBlock x:Name="HintText" FontSize="10" TextWrapping="Wrap" TextAlignment="Right"
+                           MaxWidth="330" HorizontalAlignment="Right" Margin="0,8,2,0"
+                           Visibility="Collapsed" IsHitTestVisible="False"/>
+            </StackPanel>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                      Focusable="False" Margin="16,8,16,16">
+            <WrapPanel x:Name="TilePanel" HorizontalAlignment="Center" VerticalAlignment="Top"
+                       KeyboardNavigation.TabNavigation="Continue"/>
+        </ScrollViewer>
+    </Grid>
+</Window>

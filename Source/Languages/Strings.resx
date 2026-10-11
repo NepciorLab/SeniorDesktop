@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Language.Name" xml:space="preserve">
+    <value>English</value>
+    <comment>Native name of the language, shown on the language tile (do not translate to the UI language).</comment>
+  </data>
+  <data name="Language.Flag" xml:space="preserve">
+    <value>gb</value>
+    <comment>Flag code: built-in flags are pl, gb, de. Any other code uses an image named flag-&lt;code&gt;.png in the Languages folder.</comment>
+  </data>
+  <data name="Language.Culture" xml:space="preserve">
+    <value>en-GB</value>
+    <comment>.NET culture used for dates and numbers.</comment>
+  </data>
+  <data name="Language.Order" xml:space="preserve">
+    <value>20</value>
+    <comment>Position of the language tile (lower = earlier).</comment>
+  </data>
+  <data name="Common.OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Common.Warning" xml:space="preserve">
+    <value>Warning</value>
+    <comment>Title of error message windows.</comment>
+  </data>
+  <data name="Main.Tooltip.Settings" xml:space="preserve">
+    <value>Settings – press and hold this button</value>
+  </data>
+  <data name="Main.Tooltip.Exit" xml:space="preserve">
+    <value>Turn SeniorDesktop off – press and hold this button</value>
+  </data>
+  <data name="Main.Hint.Settings" xml:space="preserve">
+    <value>To open the settings, press and hold this button for at least one second.</value>
+    <comment>Shown for 3 seconds after a short click on the settings button.</comment>
+  </data>
+  <data name="Main.Hint.Exit" xml:space="preserve">
+    <value>To turn the program off, press and hold this button for at least one second.</value>
+    <comment>Shown for 3 seconds after a short click on the exit button.</comment>
+  </data>
+  <data name="Main.Launching" xml:space="preserve">
+    <value>Starting…</value>
+    <comment>Shown on a tile for a few seconds after it was clicked.</comment>
+  </data>
+  <data name="Main.Error.LaunchSpeech" xml:space="preserve">
+    <value>The program could not be started.</value>
+    <comment>Read aloud when starting a program fails.</comment>
+  </data>
+  <data name="Main.Error.Launch" xml:space="preserve">
+    <value>Could not start: {0}\n\n{1}</value>
+    <comment>{0} = tile name, {1} = system error message. \n = new line.</comment>
+  </data>
+  <data name="Main.Error.Save" xml:space="preserve">
+    <value>The settings could not be saved.\n\n{0}</value>
+    <comment>{0} = system error message.</comment>
+  </data>
+  <data name="Main.Clock.TimeFormat" xml:space="preserve">
+    <value>HH:mm</value>
+    <comment>.NET time format of the large clock.</comment>
+  </data>
+  <data name="Main.Clock.DateFormat" xml:space="preserve">
+    <value>d MMMM yyyy</value>
+    <comment>.NET date format (without the day of the week).</comment>
+  </data>
+  <data name="Main.Clock.Speech" xml:space="preserve">
+    <value>The time is {0}. Today is {1}, {2}.</value>
+    <comment>Read aloud when the clock is clicked. {0} = time, {1} = day of the week, {2} = date.</comment>
+  </data>
+  <data name="Launcher.NoTarget" xml:space="preserve">
+    <value>No program is assigned to this tile.</value>
+  </data>
+  <data name="Settings.Title" xml:space="preserve">
+    <value>Settings – SeniorDesktop</value>
+  </data>
+  <data name="Settings.Tab.Tiles" xml:space="preserve">
+    <value>Tiles</value>
+  </data>
+  <data name="Settings.Tab.General" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Settings.Tab.Language.ToolTip" xml:space="preserve">
+    <value>Language</value>
+    <comment>The language tab itself shows only flags.</comment>
+  </data>
+  <data name="Settings.Button.OK" xml:space="preserve">
+    <value>Save and close</value>
+  </data>
+  <data name="Settings.Button.Apply" xml:space="preserve">
+    <value>Apply</value>
+    <comment>Applies the changes without closing the window.</comment>
+  </data>
+  <data name="Settings.Button.Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Settings.Tiles.Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Settings.Tiles.FromStart" xml:space="preserve">
+    <value>From Start menu…</value>
+  </data>
+  <data name="Settings.Tiles.MoveUp" xml:space="preserve">
+    <value>Move up</value>
+  </data>
+  <data name="Settings.Tiles.MoveDown" xml:space="preserve">
+    <value>Move down</value>
+  </data>
+  <data name="Settings.Tiles.Remove" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Settings.Tile.NewTitle" xml:space="preserve">
+    <value>New tile</value>
+    <comment>Default name of a newly added tile.</comment>
+  </data>
+  <data name="Settings.Tile.Name" xml:space="preserve">
+    <value>Name (text on the tile)</value>
+  </data>
+  <data name="Settings.Tile.Target" xml:space="preserve">
+    <value>Program, file, folder or web address</value>
+  </data>
+  <data name="Settings.Tile.BrowseFile" xml:space="preserve">
+    <value>Choose program or file…</value>
+  </data>
+  <data name="Settings.Tile.BrowseFolder" xml:space="preserve">
+    <value>Choose folder…</value>
+  </data>
+  <data name="Settings.Tile.Arguments" xml:space="preserve">
+    <value>Command-line arguments (usually empty)</value>
+  </data>
+  <data name="Settings.Tile.Icon" xml:space="preserve">
+    <value>Icon</value>
+  </data>
+  <data name="Settings.Tile.IconHint" xml:space="preserve">
+    <value>By default the program's own icon is shown. You can pick your own image (PNG, JPG, ICO…) or choose a symbol below.</value>
+  </data>
+  <data name="Settings.Tile.IconBrowse" xml:space="preserve">
+    <value>Choose icon file…</value>
+  </data>
+  <data name="Settings.Tile.IconClear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Settings.Tile.Symbol" xml:space="preserve">
+    <value>Symbol instead of icon</value>
+  </data>
+  <data name="Settings.Tile.Color" xml:space="preserve">
+    <value>Tile colour</value>
+  </data>
+  <data name="Settings.Tile.CustomSize" xml:space="preserve">
+    <value>Custom size of this tile (pixels, 0 = default size)</value>
+  </data>
+  <data name="Settings.Tile.CustomSizeHint" xml:space="preserve">
+    <value>e.g. 300 – a tile larger than the others</value>
+  </data>
+  <data name="Settings.Tile.Maximize" xml:space="preserve">
+    <value>Maximise the program window after it starts</value>
+  </data>
+  <data name="Settings.Tile.SpeakText" xml:space="preserve">
+    <value>Text to read aloud when clicked (empty = nothing is read)</value>
+  </data>
+  <data name="Settings.Tile.Listen" xml:space="preserve">
+    <value>Listen</value>
+  </data>
+  <data name="Settings.Tile.Preview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="Settings.Tile.FolderDefaultName" xml:space="preserve">
+    <value>Folder</value>
+    <comment>Used when a chosen folder has no name (e.g. a drive root).</comment>
+  </data>
+  <data name="Settings.Tile.DeleteConfirm" xml:space="preserve">
+    <value>Delete the tile "{0}"?</value>
+    <comment>{0} = tile name.</comment>
+  </data>
+  <data name="Settings.Tile.DeleteCaption" xml:space="preserve">
+    <value>Delete tile</value>
+  </data>
+  <data name="Settings.Dialog.PickProgram" xml:space="preserve">
+    <value>Choose a program or file</value>
+  </data>
+  <data name="Settings.Dialog.FilterPrograms" xml:space="preserve">
+    <value>Programs and shortcuts|*.exe;*.lnk;*.bat;*.cmd|All files|*.*</value>
+    <comment>Windows file dialog filter: "description|pattern|description|pattern". Keep the patterns unchanged.</comment>
+  </data>
+  <data name="Settings.Dialog.PickFolder" xml:space="preserve">
+    <value>Choose a folder</value>
+  </data>
+  <data name="Settings.Dialog.PickIcon" xml:space="preserve">
+    <value>Choose an icon file</value>
+  </data>
+  <data name="Settings.Dialog.FilterImages" xml:space="preserve">
+    <value>Images and icons|*.png;*.jpg;*.jpeg;*.bmp;*.gif;*.ico;*.exe;*.dll|All files|*.*</value>
+    <comment>Same format as Settings.Dialog.FilterPrograms.</comment>
+  </data>
+  <data name="Settings.General.TileSize" xml:space="preserve">
+    <value>Default tile size (pixels)</value>
+  </data>
+  <data name="Settings.General.Spacing" xml:space="preserve">
+    <value>Space between tiles (pixels)</value>
+  </data>
+  <data name="Settings.General.LabelFont" xml:space="preserve">
+    <value>Text size on tiles</value>
+  </data>
+  <data name="Settings.General.Background" xml:space="preserve">
+    <value>Desktop background colour</value>
+  </data>
+  <data name="Settings.General.ShowClock" xml:space="preserve">
+    <value>Show large clock and date (clicking the clock reads the time aloud)</value>
+  </data>
+  <data name="Settings.General.TimeFont" xml:space="preserve">
+    <value>Font size – time</value>
+  </data>
+  <data name="Settings.General.WeekdayFont" xml:space="preserve">
+    <value>Font size – day of the week</value>
+  </data>
+  <data name="Settings.General.DateFont" xml:space="preserve">
+    <value>Font size – date</value>
+  </data>
+  <data name="Settings.General.Autostart" xml:space="preserve">
+    <value>Start SeniorDesktop automatically when the computer starts</value>
+  </data>
+  <data name="Settings.General.SpeechEnabled" xml:space="preserve">
+    <value>Read texts aloud</value>
+  </data>
+  <data name="Settings.General.Voice" xml:space="preserve">
+    <value>Voice</value>
+  </data>
+  <data name="Settings.General.VoiceAuto" xml:space="preserve">
+    <value>(automatic – voice for the program language)</value>
+  </data>
+  <data name="Settings.General.VoiceHint" xml:space="preserve">
+    <value>The list contains the voices installed in Windows. More voices: Windows Settings → Time &amp; language → Speech.</value>
+  </data>
+  <data name="Settings.General.Rate" xml:space="preserve">
+    <value>Speaking speed (negative = slower)</value>
+  </data>
+  <data name="Settings.General.Volume" xml:space="preserve">
+    <value>Volume</value>
+  </data>
+  <data name="Settings.General.VoiceTest" xml:space="preserve">
+    <value>Test voice</value>
+  </data>
+  <data name="Settings.General.VoiceTestText" xml:space="preserve">
+    <value>This is a sample voice. Starting the program, please wait a moment.</value>
+  </data>
+  <data name="Settings.General.OpenFolder" xml:space="preserve">
+    <value>Open the configuration folder</value>
+  </data>
+  <data name="Settings.General.Exit" xml:space="preserve">
+    <value>Close SeniorDesktop (return to the normal desktop)</value>
+  </data>
+  <data name="Settings.General.ExitConfirm" xml:space="preserve">
+    <value>Close SeniorDesktop? You will see the normal Windows desktop.\nThe settings will be saved.</value>
+  </data>
+  <data name="Settings.General.ExitCaption" xml:space="preserve">
+    <value>Close SeniorDesktop</value>
+  </data>
+  <data name="Settings.Language.Heading" xml:space="preserve">
+    <value>Program language</value>
+  </data>
+  <data name="Settings.Language.Hint" xml:space="preserve">
+    <value>To add another language, copy a translation file (Strings.xx.resx) into the Languages folder and restart the program. See docs/TRANSLATING.md in the project repository.</value>
+  </data>
+  <data name="Settings.Language.OpenFolder" xml:space="preserve">
+    <value>Open the Languages folder</value>
+  </data>
+  <data name="Picker.Title" xml:space="preserve">
+    <value>Choose a program from the Start menu</value>
+  </data>
+  <data name="Picker.Search" xml:space="preserve">
+    <value>Search for a program:</value>
+  </data>
+  <data name="Picker.OK" xml:space="preserve">
+    <value>Choose</value>
+  </data>
+  <data name="Picker.Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Default.Internet.Title" xml:space="preserve">
+    <value>Internet</value>
+    <comment>Names and texts of the tiles created on the first run (they become normal user data afterwards).</comment>
+  </data>
+  <data name="Default.Internet.Speak" xml:space="preserve">
+    <value>Starting the internet. Please wait a moment.</value>
+  </data>
+  <data name="Default.Internet.Url" xml:space="preserve">
+    <value>https://www.google.co.uk</value>
+    <comment>Home page opened by the default Internet tile.</comment>
+  </data>
+  <data name="Default.Documents.Title" xml:space="preserve">
+    <value>Documents</value>
+  </data>
+  <data name="Default.Documents.Speak" xml:space="preserve">
+    <value>Opening documents.</value>
+  </data>
+  <data name="Default.Pictures.Title" xml:space="preserve">
+    <value>Pictures</value>
+  </data>
+  <data name="Default.Pictures.Speak" xml:space="preserve">
+    <value>Opening pictures.</value>
+  </data>
+  <data name="Default.Calculator.Title" xml:space="preserve">
+    <value>Calculator</value>
+  </data>
+  <data name="Default.Calculator.Speak" xml:space="preserve">
+    <value>Starting the calculator.</value>
+  </data>
+  <data name="Default.Notepad.Title" xml:space="preserve">
+    <value>Notepad</value>
+  </data>
+  <data name="Default.Notepad.Speak" xml:space="preserve">
+    <value>Starting Notepad.</value>
+  </data>
+</root>

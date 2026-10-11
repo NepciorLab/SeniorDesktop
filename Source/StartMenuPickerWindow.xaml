@@ -1,0 +1,24 @@
+<Window x:Class="SeniorDesktop.StartMenuPickerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:loc="clr-namespace:SeniorDesktop.Localization"
+        Title="{loc:Loc Picker.Title}" Width="560" Height="640"
+        WindowStartupLocation="CenterOwner" Topmost="True" FontFamily="Segoe UI" FontSize="16">
+    <Grid Margin="14">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock Text="{loc:Loc Picker.Search}" FontWeight="SemiBold" Margin="0,0,0,4"/>
+            <TextBox x:Name="SearchBox" Padding="6" FontSize="18" TextChanged="SearchBox_TextChanged"/>
+        </StackPanel>
+        <ListBox x:Name="List" Grid.Row="1" Margin="0,10" FontSize="18" DisplayMemberPath="Name"
+                 MouseDoubleClick="List_MouseDoubleClick"/>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="{loc:Loc Picker.OK}" Padding="24,8" Margin="0,0,10,0" IsDefault="True" Click="Ok_Click"/>
+            <Button Content="{loc:Loc Picker.Cancel}" Padding="24,8" IsCancel="True"/>
+        </StackPanel>
+    </Grid>
+</Window>

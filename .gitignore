@@ -1,0 +1,15 @@
+# Build output
+bin/
+obj/
+*.user
+.vs/
+
+# The release executable is published as a GitHub Release asset, not committed
+/SeniorDesktop.exe
+/SeniorDesktop-*.zip
+
+# Local leftovers of earlier working copies / artefacts that are not part of the repository
+/dist/
+/DuzyPulpit/
+/DuzyPulpit.exe
+/README.txt

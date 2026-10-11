@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>SeniorDesktop</RootNamespace>
+    <AssemblyName>SeniorDesktop</AssemblyName>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Product>SeniorDesktop</Product>
+    <Description>A large-tile desktop overlay for visually impaired and elderly Windows users.</Description>
+    <Version>1.0.0</Version>
+    <Authors>NepciorLab</Authors>
+    <Copyright>Copyright (c) 2026 NepciorLab</Copyright>
+    <RepositoryUrl>https://github.com/NepciorLab/SeniorDesktop</RepositoryUrl>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Using Include="System.IO" />
+    <PackageReference Include="System.Speech" Version="8.0.0" />
+  </ItemGroup>
+
+  <!--
+    Translations are plain .resx files (the standard .NET resource format), embedded as raw XML
+    so they can also be overridden or extended by dropping files into a "Languages" folder at run time.
+    See docs/TRANSLATING.md.
+  -->
+  <ItemGroup>
+    <EmbeddedResource Remove="Languages\*.resx" />
+    <EmbeddedResource Include="Languages\*.resx" Type="Non-Resx" WithCulture="false"
+                      LogicalName="Languages/%(Filename)%(Extension)" />
+  </ItemGroup>
+
+</Project>
