@@ -19,7 +19,7 @@ public partial class SettingsWindow : Window
 
     static readonly string[] BackgroundColors =
     {
-        "#0F2A47", "#000000", "#1B1B1B", "#1B3A2B", "#3A1B1B", "#2B2B54", "#FFF8E1", "#FFFFFF",
+        "#000000", "#1B1B1B", "#1B3A2B", "#3A1B1B", "#2B2B54", "#FFF8E1", "#FFFFFF",
     };
 
     static readonly string[] Symbols =
@@ -34,7 +34,7 @@ public partial class SettingsWindow : Window
     readonly Action<AppConfig> _apply;
     readonly ObservableCollection<TileConfig> _tiles;
     TileConfig _current;
-    bool _loadingVoices;
+    bool _loadingVoices, _loadingTheme;
 
     public AppConfig Result => _cfg;
     public bool ExitRequested { get; private set; }
@@ -43,6 +43,7 @@ public partial class SettingsWindow : Window
     public SettingsWindow(AppConfig cfg, Speech speech, Action<AppConfig> apply)
     {
         InitializeComponent();
+        Theming.Track(this);
         _cfg = cfg;
         _speech = speech;
         _apply = apply;
@@ -54,7 +55,11 @@ public partial class SettingsWindow : Window
         LanguageTab.DataContext = _cfg;
 
         BuildSwatches(TileColorPanel, TileColors, c => { if (_current != null) _current.Color = c; });
+        AddAutoSwatch(BackgroundPanel);
         BuildSwatches(BackgroundPanel, BackgroundColors, c => _cfg.BackgroundColor = c);
+        _loadingTheme = true;
+        (_cfg.Theme == Theming.ModeLight ? ThemeLight : _cfg.Theme == Theming.ModeDark ? ThemeDark : ThemeSystem).IsChecked = true;
+        _loadingTheme = false;
         BuildSymbols();
         LoadVoices();
 
@@ -62,6 +67,7 @@ public partial class SettingsWindow : Window
         {
             // Choosing a language switches the whole UI immediately (Cancel restores the applied one).
             if (e.PropertyName == nameof(AppConfig.Language)) Loc.Instance.SetLanguage(_cfg.Language);
+            if (e.PropertyName == nameof(AppConfig.Theme)) Theming.Apply(_cfg.Theme);
             RefreshPreview();
         };
         Loc.Instance.PropertyChanged += (_, e) =>
@@ -72,6 +78,33 @@ public partial class SettingsWindow : Window
     }
 
     // ---------- budowanie kontrolek ----------
+
+    /// <summary>"Automatic" background: half light, half dark - follows the theme.</summary>
+    void AddAutoSwatch(Panel panel)
+    {
+        var (light, dark) = Theming.AutoSwatchColors;
+        var brush = new LinearGradientBrush { StartPoint = new Point(0, 0), EndPoint = new Point(1, 1) };
+        brush.GradientStops.Add(new GradientStop(light, 0.0));
+        brush.GradientStops.Add(new GradientStop(light, 0.5));
+        brush.GradientStops.Add(new GradientStop(dark, 0.5));
+        brush.GradientStops.Add(new GradientStop(dark, 1.0));
+        var b = new Button
+        {
+            Width = 40, Height = 40, Margin = new Thickness(0, 0, 8, 8),
+            Background = brush, BorderBrush = Brushes.Gray, BorderThickness = new Thickness(2),
+            Cursor = System.Windows.Input.Cursors.Hand,
+        };
+        b.ToolTip = Loc.T("Settings.General.BackgroundAuto");
+        Loc.Instance.PropertyChanged += (_, e) => { if (e.PropertyName == nameof(Loc.CurrentCode)) b.ToolTip = Loc.T("Settings.General.BackgroundAuto"); };
+        b.Click += (_, _) => _cfg.BackgroundColor = "";
+        panel.Children.Add(b);
+    }
+
+    void Theme_Checked(object sender, RoutedEventArgs e)
+    {
+        if (_loadingTheme) return;
+        _cfg.Theme = (string)((RadioButton)sender).Tag;
+    }
 
     static void BuildSwatches(Panel panel, string[] colors, Action<string> pick)
     {
@@ -154,7 +187,7 @@ public partial class SettingsWindow : Window
     void RefreshPreview()
     {
         IconLoader.ClearCache();
-        PreviewBorder.Background = new SolidColorBrush(ColorUtil.Parse(_cfg.BackgroundColor, Colors.Black));
+        PreviewBorder.Background = new SolidColorBrush(Theming.ResolveBackground(_cfg));
         if (_current == null) { PreviewHost.Content = null; return; }
         var view = TileFactory.Create(_current, _cfg);
         view.Button.Margin = new Thickness(8);

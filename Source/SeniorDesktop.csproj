@@ -11,7 +11,8 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <Product>SeniorDesktop</Product>
     <Description>A large-tile desktop overlay for visually impaired and elderly Windows users.</Description>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
+    <ApplicationIcon>Assets\SeniorDesktop.ico</ApplicationIcon>
     <Authors>NepciorLab</Authors>
     <Copyright>Copyright (c) 2026 NepciorLab</Copyright>
     <RepositoryUrl>https://github.com/NepciorLab/SeniorDesktop</RepositoryUrl>
@@ -21,6 +22,10 @@
   <ItemGroup>
     <Using Include="System.IO" />
     <PackageReference Include="System.Speech" Version="8.0.0" />
+    <!-- Fluent styling with light/dark themes for the standard controls (MIT licence). -->
+    <PackageReference Include="ModernWpfUI" Version="0.9.6" />
+    <!-- Application icon, also used as the window icon. -->
+    <Resource Include="Assets\SeniorDesktop.ico" />
   </ItemGroup>
 
   <!--

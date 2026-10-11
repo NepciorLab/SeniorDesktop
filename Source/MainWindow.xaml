@@ -30,13 +30,13 @@
             <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button x:Name="GearButton" Style="{StaticResource GearButton}" Margin="0,0,14,0"
-                            Focusable="False" Opacity="0.7"
+                            Focusable="False"
                             ToolTip="{loc:Loc Main.Tooltip.Settings}"
                             PreviewMouseLeftButtonDown="Gear_Down" PreviewMouseLeftButtonUp="Gear_Up" MouseLeave="Gear_Up">
                         <TextBlock x:Name="GearGlyph" Text="⚙" FontFamily="Segoe UI Symbol" FontSize="30" Foreground="White"/>
                     </Button>
                     <Button x:Name="ExitButton" Style="{StaticResource GearButton}"
-                            Focusable="False" Opacity="0.7"
+                            Focusable="False"
                             ToolTip="{loc:Loc Main.Tooltip.Exit}"
                             PreviewMouseLeftButtonDown="Exit_Down" PreviewMouseLeftButtonUp="Exit_Up" MouseLeave="Exit_Up">
                         <TextBlock x:Name="ExitGlyph" Text="⏻" FontFamily="Segoe UI Symbol" FontSize="30" Foreground="White"/>

@@ -7,6 +7,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Threading;
 using Microsoft.Win32;
+using ModernWpf;
 using SeniorDesktop.Localization;
 
 namespace SeniorDesktop;
@@ -39,6 +40,7 @@ public partial class MainWindow : Window
             try { ConfigStore.Save(_cfg); } catch { }
         }
         Loc.Instance.SetLanguage(_cfg.Language);
+        Theming.Apply(_cfg.Theme);
         _speech = new Speech(_cfg);
 
         SourceInitialized += OnSourceInitialized;
@@ -53,6 +55,8 @@ public partial class MainWindow : Window
         _hold.Tick += (_, _) => { _hold.Stop(); _gearPressed = false; HideHint(); OpenSettings(); };
         _holdExit.Tick += (_, _) => { _holdExit.Stop(); _exitPressed = false; _allowClose = true; Close(); };
         _hintTimer.Tick += (_, _) => HideHint();
+        // "System" theme: the Windows light/dark mode can change while the program runs.
+        ThemeManager.Current.ActualApplicationThemeChanged += (_, _) => Dispatcher.BeginInvoke(Rebuild);
         Loc.Instance.PropertyChanged += (_, e) => { if (e.PropertyName == nameof(Loc.CurrentCode)) UpdateClock(); };
         PreviewKeyDown += OnPreviewKeyDown;
 
@@ -139,8 +143,9 @@ public partial class MainWindow : Window
     void Rebuild()
     {
         IconLoader.ClearCache();
-        var bg = ColorUtil.Parse(_cfg.BackgroundColor, Color.FromRgb(0x0F, 0x2A, 0x47));
-        var fg = new SolidColorBrush(ColorUtil.TextOn(bg));
+        var bg = Theming.ResolveBackground(_cfg);
+        var fgColor = ColorUtil.TextOn(bg);
+        var fg = new SolidColorBrush(fgColor);
         Background = new SolidColorBrush(bg);
         TimeText.Foreground = fg;
         WeekdayText.Foreground = fg;
@@ -151,6 +156,10 @@ public partial class MainWindow : Window
         GearGlyph.Foreground = fg;
         ExitGlyph.Foreground = fg;
         HintText.Foreground = fg;
+        // Round corner buttons: a translucent tint of the text colour works on light and dark backgrounds.
+        var tint = new SolidColorBrush(Color.FromArgb(0x33, fgColor.R, fgColor.G, fgColor.B));
+        GearButton.Background = tint;
+        ExitButton.Background = tint;
         ClockButton.Visibility = _cfg.ShowClock ? Visibility.Visible : Visibility.Hidden;
         UpdateClock();
 
@@ -265,6 +274,7 @@ public partial class MainWindow : Window
     {
         _cfg = cfg;
         Loc.Instance.SetLanguage(_cfg.Language);
+        Theming.Apply(_cfg.Theme);
         try { ConfigStore.Save(_cfg); }
         catch (Exception ex) { BigMessage.Show(this, Loc.T("Main.Error.Save", ex.Message)); }
         try { if (Autostart.IsEnabled() != _cfg.Autostart) Autostart.Set(_cfg.Autostart); } catch { }
@@ -279,8 +289,9 @@ public partial class MainWindow : Window
         var saved = win.ShowDialog() == true;
         if (saved) ApplyConfig(win.Result);
 
-        // Cancel (or a language previewed in the window): go back to the language that is actually applied.
+        // Cancel (or a language / theme previewed in the window): go back to what is actually applied.
         Loc.Instance.SetLanguage(_cfg.Language);
+        Theming.Apply(_cfg.Theme);
         _speech.Apply(_cfg);
 
         if (win.ExitRequested)

@@ -112,6 +112,7 @@ public static class BigMessage
             Topmost = true,
             ShowInTaskbar = false,
         };
+        Theming.Track(w);
         var panel = new StackPanel();
         panel.Children.Add(new TextBlock { Text = text, FontSize = 30, TextWrapping = TextWrapping.Wrap, MaxWidth = 700, Margin = new Thickness(32) });
         var ok = new Button { Content = Loc.T("Common.OK"), FontSize = 30, Padding = new Thickness(70, 8, 70, 8), Margin = new Thickness(32, 0, 32, 32), IsDefault = true, HorizontalAlignment = HorizontalAlignment.Center };

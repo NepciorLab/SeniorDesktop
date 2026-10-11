@@ -12,6 +12,7 @@ public partial class StartMenuPickerWindow : Window
     public StartMenuPickerWindow()
     {
         InitializeComponent();
+        Theming.Track(this);
         _all = StartMenuScanner.Scan();
         List.ItemsSource = _all;
         Loaded += (_, _) => SearchBox.Focus();

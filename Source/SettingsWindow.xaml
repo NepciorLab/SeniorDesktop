@@ -11,11 +11,11 @@
             <Setter Property="FontWeight" Value="SemiBold"/>
         </Style>
         <Style x:Key="Hint" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="#666"/>
+            <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseMediumBrush}"/>
             <Setter Property="FontSize" Value="13"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
         </Style>
-        <Style x:Key="Btn" TargetType="Button">
+        <Style x:Key="Btn" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
             <Setter Property="Padding" Value="12,6"/>
             <Setter Property="Margin" Value="0,0,6,6"/>
         </Style>
@@ -120,6 +120,16 @@
             <TabItem Header="{loc:Loc Settings.Tab.General}" FontSize="16" Padding="14,4">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel x:Name="GeneralTab" Margin="20,8,20,20" MaxWidth="680">
+
+                        <TextBlock Style="{StaticResource Lbl}" Margin="0,0,0,4" Text="{loc:Loc Settings.General.Theme}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton x:Name="ThemeSystem" GroupName="Theme" Tag="system" MinWidth="0" Margin="0,0,22,0"
+                                         Content="{loc:Loc Settings.General.Theme.System}" Checked="Theme_Checked"/>
+                            <RadioButton x:Name="ThemeLight" GroupName="Theme" Tag="light" MinWidth="0" Margin="0,0,22,0"
+                                         Content="{loc:Loc Settings.General.Theme.Light}" Checked="Theme_Checked"/>
+                            <RadioButton x:Name="ThemeDark" GroupName="Theme" Tag="dark" MinWidth="0"
+                                         Content="{loc:Loc Settings.General.Theme.Dark}" Checked="Theme_Checked"/>
+                        </StackPanel>
 
                         <TextBlock Style="{StaticResource Lbl}" Text="{loc:Loc Settings.General.TileSize}"/>
                         <Grid>
@@ -245,16 +255,17 @@
                                     <Setter.Value>
                                         <ControlTemplate TargetType="ListBoxItem">
                                             <Border x:Name="Bd" Width="190" Padding="14,14,14,12" CornerRadius="14"
-                                                    BorderThickness="4" BorderBrush="#D5D5D5" Background="White">
+                                                    BorderThickness="4" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}"
+                                                    Background="{DynamicResource SystemControlBackgroundAltHighBrush}">
                                                 <ContentPresenter/>
                                             </Border>
                                             <ControlTemplate.Triggers>
                                                 <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter TargetName="Bd" Property="BorderBrush" Value="#7AA7E8"/>
+                                                    <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource SystemControlHighlightBaseMediumBrush}"/>
                                                 </Trigger>
                                                 <Trigger Property="IsSelected" Value="True">
-                                                    <Setter TargetName="Bd" Property="BorderBrush" Value="#1F6FEB"/>
-                                                    <Setter TargetName="Bd" Property="Background" Value="#EAF2FF"/>
+                                                    <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource SystemControlHighlightAccentBrush}"/>
+                                                    <Setter TargetName="Bd" Property="Background" Value="{DynamicResource SystemControlHighlightListLowBrush}"/>
                                                 </Trigger>
                                             </ControlTemplate.Triggers>
                                         </ControlTemplate>

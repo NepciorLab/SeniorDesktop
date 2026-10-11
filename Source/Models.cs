@@ -46,13 +46,14 @@ public class AppConfig : ObservableObject
 {
     int _tileSize = 200, _spacing = 24, _fontSize = 22, _rate, _volume = 100;
     int _timeFont = 72, _weekdayFont = 30, _dateFont = 30;
-    string _bg = "#0F2A47", _voice = "", _language = "";
+    string _bg = "", _voice = "", _language = "", _theme = Theming.ModeSystem;
     bool _clock = true, _speech = true, _autostart;
 
     public int TileSize { get => _tileSize; set => Set(ref _tileSize, value); }
     public int TileSpacing { get => _spacing; set => Set(ref _spacing, value); }
     public int LabelFontSize { get => _fontSize; set => Set(ref _fontSize, value); }
-    public string BackgroundColor { get => _bg; set => Set(ref _bg, value ?? "#0F2A47"); }
+    /// <summary>Desktop background colour. Empty = automatic (follows the light / dark theme).</summary>
+    public string BackgroundColor { get => _bg; set => Set(ref _bg, value ?? ""); }
     public bool ShowClock { get => _clock; set => Set(ref _clock, value); }
     /// <summary>Font size of the time, the day of the week and the date (separately).</summary>
     public int TimeFontSize { get => _timeFont; set => Set(ref _timeFont, value); }
@@ -66,6 +67,8 @@ public class AppConfig : ObservableObject
     public bool Autostart { get => _autostart; set => Set(ref _autostart, value); }
     /// <summary>UI language code (matches Languages\Strings.&lt;code&gt;.resx), e.g. "pl", "en", "de". Empty = detect.</summary>
     public string Language { get => _language; set => Set(ref _language, value ?? ""); }
+    /// <summary>Appearance: "system" (default, follows Windows), "light" or "dark".</summary>
+    public string Theme { get => _theme; set => Set(ref _theme, string.IsNullOrWhiteSpace(value) ? Theming.ModeSystem : value); }
 
     public List<TileConfig> Tiles { get; set; } = new();
 

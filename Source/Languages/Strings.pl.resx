@@ -320,4 +320,21 @@
   <data name="Default.Notepad.Speak" xml:space="preserve">
     <value>Uruchamiam notatnik.</value>
   </data>
+  <data name="Settings.General.Theme" xml:space="preserve">
+    <value>Wygląd</value>
+    <comment>Light / dark mode selector.</comment>
+  </data>
+  <data name="Settings.General.Theme.System" xml:space="preserve">
+    <value>Zgodnie z systemem (domyślnie)</value>
+  </data>
+  <data name="Settings.General.Theme.Light" xml:space="preserve">
+    <value>Jasny</value>
+  </data>
+  <data name="Settings.General.Theme.Dark" xml:space="preserve">
+    <value>Ciemny</value>
+  </data>
+  <data name="Settings.General.BackgroundAuto" xml:space="preserve">
+    <value>Automatyczny (zgodnie z trybem jasnym / ciemnym)</value>
+    <comment>Tooltip of the first background colour swatch.</comment>
+  </data>
 </root>
